@@ -146,7 +146,7 @@ export function UpdateProductForm({ product }: UpdateProductFormProps) {
           <FormControl>
             <Textarea
               placeholder="Type product description here."
-              {...form.register("description")}
+              {...form.register("name")}
               defaultValue={product.description ?? ""}
             />
           </FormControl>
@@ -231,7 +231,7 @@ export function UpdateProductForm({ product }: UpdateProductFormProps) {
                 type="number"
                 inputMode="numeric"
                 placeholder="Type product price here."
-                {...form.register("price")}
+                {...form.register("name")}
                 defaultValue={product.price}
               />
             </FormControl>
@@ -246,7 +246,7 @@ export function UpdateProductForm({ product }: UpdateProductFormProps) {
                 type="number"
                 inputMode="numeric"
                 placeholder="Type product inventory here."
-                {...form.register("inventory", {
+                {...form.register("name", {
                   valueAsNumber: true,
                 })}
                 defaultValue={product.inventory}
@@ -303,6 +303,9 @@ export function UpdateProductForm({ product }: UpdateProductFormProps) {
           </Button>
           <Button
             variant="destructive"
+              onClick={() => {
+            form.trigger(["name", "price" ,"inventory" ])
+          }}
             onClick={() => {
               startTransition(async () => {
                 await deleteProductAction({
